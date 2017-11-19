@@ -85,17 +85,19 @@ class SmartShanghaiHousingSpider(scrapy.Spider):
         response2 = TextResponse(r2.url, body=r2.text, encoding='utf-8')
         min_current_listing = min(response2.css('.biaoti').xpath("./a/@href").re("\/apartments-rent\/([0-9]*$)"))
 
-        print "CURRENT MINIMUM LISTING: %s" % str(min_current_listing)
-        print "PREVIOUS MAXIMUM LISTING: %s" % str(self.max_prev_listing)
+        print "CURRENT SMARTSHANGHAI MINIMUM LISTING: %s" % str(min_current_listing)
+        print "CURRENT SMARTSHANGHAI MAXIMUM LISTING: %s" % str(min_current_listing)
+        print "LOCAL MAXIMUM LISTING: %s" % str(self.max_prev_listing)
 
         if self.max_prev_listing is None:
-            print 'NO Previous listings: Pulling from current minimum listing: %s' % min_current_listing
+            print 'NO LOCAL listings: Pulling from current minimum listing: %s' % min_current_listing
             yield response.follow(self.start_urls[0] + "apartments-rent/%s" % str(min_current_listing),
                                   self.parse_rent)
-        elif int(self.max_prev_listing) > int(min_current_listing) & int(self.max_prev_listing) < int(self.max_current_listings):
-            print 'Previous listings AVAILABLE: Pulling from previous maximum listing: %s' % self.max_prev_listing
+        elif int(self.max_prev_listing) >= int(min_current_listing) & int(self.max_prev_listing) < int(self.max_current_listings):
+            print 'Local Listings AVAILABLE: Pulling from previous maximum listing: %s' % self.max_prev_listing
             yield response.follow(self.start_urls[0] + "apartments-rent/%s" % str(int(self.max_prev_listing) + 1),
                                   self.parse_rent)
+
         else:
             print "DOING NOTHING - MINIMUM CURRENT LISTING:%s, MINIMUM PREVIOUS LISTING: %s" % (
                 min_current_listing, self.max_prev_listing)
