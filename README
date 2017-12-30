@@ -1,1 +1,18 @@
-smartshanghai Web scraping project.
+SmartShanghai Web scraping project.
+
+
+
+
+# Running Spider
+Main spider is in the housing.py file. Item pipeline will append jsonline rows to output/listings.jl.
+
+To run the spider need to simply run the command at the root project folder.
+
+```
+scrapy crawl ss_housing      
+```
+
+# Roadmap
+
+Want to prevent scraper from making requests to already crawled URLs. Item pipeline will already drop these listings and prevent them from being
+added to the output file, but having the schedulers request and download these pages is wasting time.
