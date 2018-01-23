@@ -6,7 +6,8 @@ SmartShanghai Web scraping project.
 # Running Spider
 Main spider is in the housing.py file. Item pipeline will append jsonline rows to output/listings.jl.
 
-To run the spider need to simply run the command at the root project folder.
+To run the spider need to simply run the command at the root project folder. Whole process takes about one hour, regardless of wether or not you crawled listings
+the day before (need to change this, see roadmap below).
 
 ```
 scrapy crawl ss_housing      
@@ -16,3 +17,6 @@ scrapy crawl ss_housing
 
 Want to prevent scraper from making requests to already crawled URLs. Item pipeline will already drop these listings and prevent them from being
 added to the output file, but having the schedulers request and download these pages is wasting time.
+
+# Analysis
+Analysis jupyter notebook at root folder: ss_analysis.ipynb

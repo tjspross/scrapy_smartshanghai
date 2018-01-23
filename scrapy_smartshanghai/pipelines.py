@@ -40,6 +40,9 @@ class ScrapySmartShanghaiPipeline(object):
             raise DropItem("Null listing found: %s" % item)
         else:
             self.ids_seen.add(item['listing_id'])
-            line = json.dumps(dict(item), default=myconverter) + "\n"
+            if self.ids_seen:
+                line = "\n" + json.dumps(dict(item), default=myconverter)
+            else:
+                line = json.dumps(dict(item), default=myconverter)
             self.file.write(line)
             return item
