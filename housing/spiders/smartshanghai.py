@@ -7,7 +7,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.spider import CrawlSpider, Rule
 
-from scrapy_smartshanghai.items import ScrapySmartShanghaiItem
+from housing.items import ScrapySmartShanghaiItem
 
 
 def remove_spaces(str):

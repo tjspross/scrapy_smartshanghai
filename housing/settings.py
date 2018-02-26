@@ -9,10 +9,10 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'scrapy_smartshanghai'
+BOT_NAME = 'housing'
 
-SPIDER_MODULES = ['scrapy_smartshanghai.spiders']
-NEWSPIDER_MODULE = 'scrapy_smartshanghai.spiders'
+SPIDER_MODULES = ['housing.spiders']
+NEWSPIDER_MODULE = 'housing.spiders'
 # AUTOTHROTTLE_ENABLED = True
 # AUTOTHROTTLE_TARGET_CONCURRENCY = 10.0
 
@@ -23,7 +23,7 @@ HTTPCACHE_EXPIRATION_SECS = 86400  # 1 day
 USER_AGENT = 'tjspross (www.datamewhat.com)'
 
 ITEM_PIPELINES = {
-    'scrapy_smartshanghai.pipelines.ScrapySmartShanghaiPipeline': 1000
+    'housing.pipelines.ScrapySmartShanghaiPipeline': 1000
 }
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
